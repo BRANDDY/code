@@ -33,7 +33,7 @@ function renderPlaces(places) {
         //model.setAttribute('mtl-model', './assets/MyModel/scene.mtl');//load model
         model.setAttribute('rotation', '0 180 0');//rotation
         //model.setAttribute('animation-mixer', '');//animation
-        model.setAttribute('scale', '0.1 0.1 0.1')//scale
+        model.setAttribute('scale', '10 10 10')//scale
 
         //Event (name: loaded)
         //trigger event: 
