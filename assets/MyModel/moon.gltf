@@ -29,8 +29,8 @@
             "name" : "\u6750\u8d28",
             "pbrMetallicRoughness" : {
                 "baseColorFactor" : [
-                    0,
-                    0,
+                    0.8000000715255737,
+                    0.008614144288003445,
                     0,
                     1
                 ],
