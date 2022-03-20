@@ -15,7 +15,8 @@ function staticLoadPlaces() {
                 lng: -79.501608,
                 rota: '0, 60,0',
             },
-            model:'coffee.gltf'
+            model:'coffee.gltf',
+            animate:'property: rotation; to: 0 420 0; loop: true; dur: 10000'
         },
         {
             name:'PizzaPizza',
@@ -24,7 +25,8 @@ function staticLoadPlaces() {
                 lng: -79.501641,
                 rota: '0,0,0',
             },
-            model:'moon.gltf'
+            model:'moon.gltf',
+            animate:''
         },
         {
             name:'Library',
@@ -33,16 +35,17 @@ function staticLoadPlaces() {
                 lng: -79.505585,
                 rota: '0,0,0',
             },
-            model:'moon.gltf'
+            model:'moon.gltf',
+            animate:''
         },
         {
             name:'parking', //add parking location
             location:{
                 lat: 43.775180,
                 lng: -79.498349,
-                rota: '0,0,0',
             },
-            model:'car.gltf'
+            model:'car.gltf',
+            animate:''
         }
     ];
 }
@@ -57,13 +60,13 @@ function renderPlaces(places) {
         let longitude = place.location.lng;
         let modelName = place.model;
         let rota = place.location.rota;
+        let animate = place.animate;
         //creat object in the page. give the values of 3d model, location, rotation, scale to object
         let model = document.createElement('a-entity');//creat 'a-entity' in index.html, and give it to 'model'
         model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);//location
         model.setAttribute('gltf-model', './assets/MyModel/'+modelName);//load model
-        //model.setAttribute('mtl-model', './assets/MyModel/scene.mtl');//load model
         model.setAttribute('rotation', rota);//rotation
-        //model.setAttribute('animation-mixer', 'clip:run');//animation
+        model.setAttribute('animation', animate);//animation
         model.setAttribute('scale', '20 20 20')//scale
 
         //Event (name: loaded)
