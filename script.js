@@ -13,6 +13,7 @@ function staticLoadPlaces() {
             location: {
                 lat: 43.772544,
                 lng: -79.501608,
+                rota: '0, 60,0',
             },
             model:'coffee.gltf'
         },
@@ -21,6 +22,7 @@ function staticLoadPlaces() {
             location:{
                 lat: 43.774307,
                 lng: -79.501641,
+                rota: '0,0,0',
             },
             model:'moon.gltf'
         },
@@ -29,6 +31,7 @@ function staticLoadPlaces() {
             location:{
                 lat: 43.772445,
                 lng: -79.505585,
+                rota: '0,0,0',
             },
             model:'moon.gltf'
         },
@@ -37,6 +40,7 @@ function staticLoadPlaces() {
             location:{
                 lat: 43.775180,
                 lng: -79.498349,
+                rota: '0,0,0',
             },
             model:'car.gltf'
         }
@@ -52,12 +56,13 @@ function renderPlaces(places) {
         let latitude = place.location.lat;
         let longitude = place.location.lng;
         let modelName = place.model;
+        let rota = place.location.rota;
         //creat object in the page. give the values of 3d model, location, rotation, scale to object
         let model = document.createElement('a-entity');//creat 'a-entity' in index.html, and give it to 'model'
         model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);//location
         model.setAttribute('gltf-model', './assets/MyModel/'+modelName);//load model
         //model.setAttribute('mtl-model', './assets/MyModel/scene.mtl');//load model
-        model.setAttribute('rotation', '0 0 0');//rotation
+        model.setAttribute('rotation', rota);//rotation
         //model.setAttribute('animation-mixer', 'clip:run');//animation
         model.setAttribute('scale', '20 20 20')//scale
 
