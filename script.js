@@ -59,7 +59,7 @@ function renderPlaces(places) {
         //model.setAttribute('mtl-model', './assets/MyModel/scene.mtl');//load model
         model.setAttribute('rotation', '0 0 0');//rotation
         //model.setAttribute('animation-mixer', 'clip:run');//animation
-        model.setAttribute('scale', '50 50 50')//scale
+        model.setAttribute('scale', '20 20 20')//scale
 
         //Event (name: loaded)
         //trigger event: 
