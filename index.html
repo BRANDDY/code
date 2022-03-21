@@ -20,13 +20,24 @@
         	renderer="antialias: true; alpha: true">
 			<a-text
         		value="I am here"
-				color="red"
+				color="black"
         		look-at="[gps-camera]"
        			scale="1 1 1"
         		gps-entity-place="latitude: 43.773509; longitude: -79.501224;"
       		></a-text>
 			<a-camera gps-camera="simulateLatitude: 43.773509;simulateLongitude:-79.501224" rotation-reader> </a-camera>
 		</a-scene>
+		<button type="button" onclick="openTab('./test.html')">location-based AR</button>
+		<script>
+			function openTab(url) {
+				const link = document.createElement('a');
+				link.href = url;
+				link.target = '_blank';
+				document.body.appendChild(link);
+				link.click();
+				link.remove();
+			}
+		</script>
 	</body>
 </html>
 

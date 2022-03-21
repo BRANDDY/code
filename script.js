@@ -2,7 +2,8 @@
 window.onload = () => { 
     //object value from function staticLoadPlaces
     let places = staticLoadPlaces(); 
-     renderPlaces(places);
+    renderPlaces(places);
+    getLocation();
 };
 
 //set model name and other information
@@ -76,4 +77,36 @@ function renderPlaces(places) {
         });
         scene.appendChild(model);
     });
+}
+function getLocation(){
+    var long = '0';
+    var lat = '0';
+    let scene = document.querySelector('a-scene');
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(
+            function(position){
+                lat = position.coords.latitude;
+                long = position.coords.longitude;
+            }
+        )
+    }else {
+        long = '1';
+        lat = '2';
+    }
+    if (long=='0'){
+        long = '2';
+    }else{
+        long = '3';
+    }
+    let word = document.createElement('a-text');
+    word.setAttribute('gps-entity-place', `latitude:  43.773509; longitude:-79.501224;`);
+    word.setAttribute('value',lat+'+'+long);
+    word.setAttribute('color', 'red');
+    word.setAttribute('look-at','[gps-camera]');
+    word.setAttribute('scale','1 1 1');
+
+    word.addEventListener('loaded', () => {
+        window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
+    });
+    scene.appendChild(word);
 }
