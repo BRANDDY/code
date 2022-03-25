@@ -15,7 +15,7 @@ function staticLoadPlaces() {
             location: {
                 lat: 43.772544,
                 lng: -79.501608,
-                rota: '0, 60,0',
+                rota: '0 60 0',
             },
             model:'coffee.gltf',
             animate:'property: rotation; to: 0 420 0; loop: true; dur: 10000'
@@ -25,29 +25,20 @@ function staticLoadPlaces() {
             location:{
                 lat: 43.774307,
                 lng: -79.501641,
-                rota: '0,0,0',
+                rota: '0 0 0',
             },
-            model:'moon.gltf',
-            animate:''
+            model:'Pizza.gltf',
+            animate:'property: rotation; to: 0 360 360; loop: true; dur: 20000'
         },
         {
             name:'Library',
             location:{
                 lat: 43.772445,
                 lng: -79.505585,
-                rota: '0,0,0',
+                rota: '0 25 0',
             },
-            model:'moon.gltf',
-            animate:''
-        },
-        {
-            name:'parking', //add parking location
-            location:{
-                lat: 43.775180,
-                lng: -79.498349,
-            },
-            model:'car.gltf',
-            animate:''
+            model:'BOOK.gltf',
+            animate:'property: scale; to: 23 23 23; loop: true; dur: 1500'
         }
     ];
 }
@@ -67,7 +58,7 @@ function renderPlaces(places) {
         let model = document.createElement('a-entity');//creat 'a-entity' in index.html, and give it to 'model'
         model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);//location
         model.setAttribute('gltf-model', './assets/MyModel/'+modelName);//load model
-        model.setAttribute('rotation', rota);//rotation
+        model.setAttribute('rotation', `${rota}`);//rotation
         model.setAttribute('animation', animate);//animation
         model.setAttribute('scale', '20 20 20')// scale
 
@@ -79,27 +70,26 @@ function renderPlaces(places) {
         scene.appendChild(model);
     });
 }
+//record currently location, labeled by car model 
 function getLocation(){
-    //let scene = document.querySelector('a-scene');
+    let scene = document.querySelector('a-scene');
     if(navigator.geolocation){
-        let s = navigator.geolocation.getCurrentPosition(
-            function show(position){
-                lat = position.coords;
+        navigator.geolocation.getCurrentPosition(function (position){
+                lat = position.coords.latitude;
                 long = position.coords.longitude;
-                /*
-                let word = document.createElement('a-text');
-                word.setAttribute('gps-entity-place', `latitude:  43.773509; longitude:-79.501224;`);
-                word.setAttribute('value',lat+', '+long);
-                word.setAttribute('color', 'red');
-                word.setAttribute('look-at','[gps-camera]');
-                word.setAttribute('scale','1 1 1');
+                let word = document.createElement('a-entity');
+                word.setAttribute('gps-entity-place', `latitude: ${lat}; longitude: ${long}`);
+                word.setAttribute('gltf-model', './assets/MyModel/car.gltf');
+                word.setAttribute('scale','20 20 20');
+
                 word.addEventListener('loaded', () => {
                     window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
                 });
-                scene.appendChild(word);*/
-            }
-        );
+                scene.appendChild(word);
+            });
+
     }else {
-        console.log('Failed to get your location');
+        alert('Failed to get your location');
     }
 }
+            
