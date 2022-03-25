@@ -26,21 +26,8 @@
         		gps-entity-place="latitude: 43.773509; longitude: -79.501224;"
       		></a-text>
 			<a-camera gps-camera="simulateLatitude: 43.773509;simulateLongitude:-79.501224" rotation-reader> </a-camera>
+			<button type="button" onclick="alert('Hello world!')">I am parking here</button>
 		</a-scene>
-	</body>
-	<body>
-		<h1>The button Element</h1>
-		<button type="button" onclick="openTab('./test.html')">location-based AR</button>
-		<script>
-			function openTab(url) {
-				const link = document.createElement('a');
-				link.href = url;
-				link.target = '_blank';
-				document.body.appendChild(link);
-				link.click();
-				link.remove();
-			}
-		</script>
 	</body>
 </html>
 
