@@ -13,6 +13,9 @@
 		<!--script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script-->
 		<script src="./script.js"></script>
 	</head>
+		<div style='position: fixed; top: 10px; width:100%; text-align: center; z-index: 1;'>
+		<button onclick="getLocation()"> I am parking here</button>
+	</div>
 	<body style="margin: 0; overflow: hidden;">
 		<a-scene 
 			vr-mode-ui="enabled: false"
@@ -26,7 +29,7 @@
         		gps-entity-place="latitude: 43.773509; longitude: -79.501224;"
       		></a-text>
 			<a-camera gps-camera="simulateLatitude: 43.773509;simulateLongitude:-79.501224" rotation-reader> </a-camera>
-			<button type="button" onclick="alert('Hello world!')">I am parking here</button>
+		
 		</a-scene>
 	</body>
 </html>

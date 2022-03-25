@@ -1,9 +1,9 @@
 //run immediately after load html page
+var lat,long;
 window.onload = () => { 
     //object value from function staticLoadPlaces
     let places = staticLoadPlaces(); 
     renderPlaces(places);
-    getLocation();
 };
 
 //set model name and other information
@@ -80,14 +80,13 @@ function renderPlaces(places) {
     });
 }
 function getLocation(){
-    var long = '0.';
-    var lat = '0.';
-    let scene = document.querySelector('a-scene');
+    //let scene = document.querySelector('a-scene');
     if(navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(
-            function(position){
-                lat = position.coords.latitude;
+        let s = navigator.geolocation.getCurrentPosition(
+            function show(position){
+                lat = position.coords;
                 long = position.coords.longitude;
+                /*
                 let word = document.createElement('a-text');
                 word.setAttribute('gps-entity-place', `latitude:  43.773509; longitude:-79.501224;`);
                 word.setAttribute('value',lat+', '+long);
@@ -97,7 +96,7 @@ function getLocation(){
                 word.addEventListener('loaded', () => {
                     window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
                 });
-                scene.appendChild(word);
+                scene.appendChild(word);*/
             }
         );
     }else {
